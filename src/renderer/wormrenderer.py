@@ -14,6 +14,10 @@ class WormRenderer:
         self.__color = BLUE
 
     def render(self, worm, field_x, field_y):
+        self.__render_body(field_x, field_y, worm)
+        # pygame.mixer.Sound.play(pygame.mixer.Sound("src/renderer/sounds/movement.wav"))
+
+    def __render_body(self, field_x, field_y, worm):
         for x, y in worm.get_body():
             pos_x = x * CELL_SIZE + field_x
             pos_y = y * CELL_SIZE + field_y
@@ -24,7 +28,7 @@ class WormRenderer:
         for color in WormRenderer.DEATH_COLORS:
             time.sleep(0.1)
             self.__color = color
-            self.render(worm, field_x, field_y)
+            self.__render_body(field_x, field_y, worm)
             pygame.display.flip()
 
 

@@ -3,13 +3,13 @@ import pygame
 from src.colors import *
 from src.field import Field
 from src.levelmanger import LevelManager
+from src.renderer.scoreprocessor import ScoreProcessor
 
 
 class GameRound:
     def __init__(self, screen):
         self.__screen = screen
-        self.__level_manager = LevelManager()
-        self.__field = Field(self.__screen, self.__level_manager)
+        self.__field = Field(self.__screen, LevelManager(), ScoreProcessor())
 
     def main_loop(self):
         finished = False

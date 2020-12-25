@@ -22,6 +22,8 @@ class Worm:
         self.__y = position_y
 
         self.__is_wall_bump = False
+        self.__is_touch_tail = False
+        self.__is_eat = False
 
     def move(self):
         if self.__direction == Direction.LEFT:
@@ -45,10 +47,19 @@ class Worm:
                 self.__y = FIELD_HEIGHT - 1
                 self.__is_wall_bump = True
 
+        for body_cell in self.__body:
+            body_cell_x, body_cell_y = body_cell
+            if self.__x == body_cell_x and self.__y == body_cell_y:
+                self.__is_touch_tail = True
+                return
+
         if self.__is_wall_bump:
             return
 
-        self.__body.pop()
+        if not self.__is_eat:
+            self.__body.pop()
+        else:
+            self.__is_eat = False
         self.__body.insert(0, [self.__x, self.__y])
 
     def get_position(self):
@@ -75,3 +86,14 @@ class Worm:
 
     def is_wall_bump(self):
         return self.__is_wall_bump
+
+    def is_touch_tail(self):
+        return self.__is_touch_tail
+
+    def eat(self, foods):
+        for i, food in enumerate(foods):
+            if (self.__x, self.__y) == food.get_position():
+                self.__is_eat = True
+                del foods[i]
+                return food
+        return None

@@ -9,6 +9,7 @@ class GameProcessor:
         size = [800, 600]
         self.__screen = pygame.display.set_mode(size)
         pygame.display.set_caption("Игра червячок для Златки :)")
+        pygame.mixer.init()
 
     def run(self):
         game_round = GameRound(self.__screen)
