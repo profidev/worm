@@ -17,13 +17,16 @@ class GameRound:
 
         while not finished:
             clock.tick(5)
+            self.__screen.fill(BLACK)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     finished = True
 
-            self.__screen.fill(BLACK)
+                self.__field.move(event)
 
             self.__field.action()
+            if self.__field.is_round_finish():
+                finished = True
 
             pygame.display.flip()
