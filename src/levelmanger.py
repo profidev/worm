@@ -1,8 +1,8 @@
 class LevelManager:
     def __init__(self):
         self.__levels_config = [
-            (3, 10, 28, 20),
-            (3, 15, 28, 20),
+            (0.17, 3, 30, 28, 20),
+            (0.15, 3, 40, 28, 20),
         ]
         self.__level = 1
 

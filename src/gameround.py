@@ -16,7 +16,7 @@ class GameRound:
         clock = pygame.time.Clock()
 
         while not finished:
-            clock.tick(5)
+            clock.tick(60)
             self.__screen.fill(BLACK)
 
             for event in pygame.event.get():

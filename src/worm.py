@@ -1,3 +1,4 @@
+import time
 from enum import Enum
 
 from src.constants import *
@@ -11,7 +12,7 @@ class Direction(Enum):
 
 
 class Worm:
-    def __init__(self, initial_length, max_length, position_x, position_y):
+    def __init__(self, step_delay, initial_length, max_length, position_x, position_y):
         self.__body = []
         self.__init_body(initial_length, position_x, position_y)
 
@@ -20,12 +21,15 @@ class Worm:
         self.__max_length = max_length
         self.__x = position_x
         self.__y = position_y
+        self.__step_delay = step_delay
 
         self.__is_wall_bump = False
         self.__is_touch_tail = False
         self.__is_eat = False
 
     def move(self):
+        time.sleep(self.__step_delay)
+
         if self.__direction == Direction.LEFT:
             self.__x -= 1
             if self.__x < 0:
@@ -65,6 +69,9 @@ class Worm:
     def get_position(self):
         return self.__x, self.__y
 
+    def get_direction(self):
+        return self.__direction
+
     def get_body(self):
         return self.__body
 
@@ -73,16 +80,20 @@ class Worm:
             self.__body.append((x + i, y))
 
     def move_up(self):
-        self.__direction = Direction.UP
+        if self.__direction is not Direction.DOWN:
+            self.__direction = Direction.UP
 
     def move_down(self):
-        self.__direction = Direction.DOWN
+        if self.__direction is not Direction.UP:
+            self.__direction = Direction.DOWN
 
     def move_left(self):
-        self.__direction = Direction.LEFT
+        if self.__direction is not Direction.RIGHT:
+            self.__direction = Direction.LEFT
 
     def move_right(self):
-        self.__direction = Direction.RIGHT
+        if self.__direction is not Direction.LEFT:
+            self.__direction = Direction.RIGHT
 
     def is_wall_bump(self):
         return self.__is_wall_bump
