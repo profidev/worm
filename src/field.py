@@ -24,7 +24,7 @@ class Field:
         self.__food_renderer = FoodRenderer(screen)
         self.__score_processor = score_processor
 
-        self.__is_wall_bump = False
+        self.__is_game_over = False
 
     def action(self):
         field_position = (self.__field_x, self.__field_y, self.__field_width, self.__field_height)
@@ -47,10 +47,13 @@ class Field:
 
         if self.__worm.is_wall_bump() or self.__worm.is_touch_tail():
             self.__worm_renderer.death(self.__worm, self.__field_x, self.__field_y)
-            self.__is_wall_bump = True
+            self.__is_game_over = True
 
-    def is_round_finish(self):
-        return self.__is_wall_bump
+    def is_game_over(self):
+        return self.__is_game_over
+
+    def is_level_done(self):
+        return self.__worm.is_max_length()
 
     def move(self, event):
         if event.type != pygame.KEYDOWN:

@@ -101,6 +101,9 @@ class Worm:
     def is_touch_tail(self):
         return self.__is_touch_tail
 
+    def is_max_length(self):
+        return len(self.__body) >= self.__max_length
+
     def eat(self, foods):
         for i, food in enumerate(foods):
             if (self.__x, self.__y) == food.get_position():

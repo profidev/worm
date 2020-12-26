@@ -14,7 +14,6 @@ class GameProcessor:
     def run(self):
         game_round = GameRound(self.__screen)
         game_round.main_loop()
-        print('Game over!');
 
     def __del__(self):
         pygame.quit()

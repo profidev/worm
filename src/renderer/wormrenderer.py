@@ -12,7 +12,7 @@ class WormRenderer:
 
     def __init__(self, screen):
         self.__screen = screen
-        self.__color = BLUE
+        self.__color = SANDY_BROWN
 
     def render(self, worm, field_x, field_y):
         self.__render_body(field_x, field_y, worm)
