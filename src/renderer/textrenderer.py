@@ -35,3 +35,32 @@ class TextRenderer:
             pygame.display.flip()
             time.sleep(0.005)
         time.sleep(3)
+
+    def input_name(self):
+        name = ""
+        font = pygame.font.SysFont('Impact', 50)
+        is_input_finished = False
+        while not is_input_finished:
+            for evt in pygame.event.get():
+                if evt.type == pygame.KEYDOWN:
+                    if evt.unicode.isalpha() or pygame.K_0 <= evt.key <= pygame.K_9:
+                        name += evt.unicode
+                    elif evt.key == pygame.K_BACKSPACE:
+                        name = name[:-1]
+                    elif evt.key == pygame.K_RETURN:
+                        is_input_finished = True
+                elif evt.type == pygame.QUIT:
+                    return
+            self.__screen.fill(BLACK)
+            text = font.render('Введи ваше имя', False, WHITE)
+            rect = text.get_rect()
+            rect.center = self.__screen.get_rect().center
+            rect.y -= 60
+            self.__screen.blit(text, rect)
+
+            block = font.render(name, True, WHITE)
+            rect = block.get_rect()
+            rect.center = self.__screen.get_rect().center
+            self.__screen.blit(block, rect)
+            pygame.display.flip()
+        return name

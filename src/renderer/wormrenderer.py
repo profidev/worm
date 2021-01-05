@@ -24,35 +24,7 @@ class WormRenderer:
             pos_x = x * CELL_SIZE + field_x
             pos_y = y * CELL_SIZE + field_y
 
-            if i == 0:
-                half_ceil = CELL_SIZE / 2
-                pygame.draw.circle(self.__screen, self.__color, (pos_x + half_ceil, pos_y + half_ceil), half_ceil)
-                if worm.get_direction() == Direction.UP:
-                    pygame.draw.rect(
-                        self.__screen,
-                        self.__color,
-                        [pos_x, pos_y + half_ceil, CELL_SIZE, CELL_SIZE]
-                    )
-                elif worm.get_direction() == Direction.DOWN:
-                    pygame.draw.rect(
-                        self.__screen,
-                        self.__color,
-                        [pos_x, pos_y, CELL_SIZE, CELL_SIZE - half_ceil]
-                    )
-                elif worm.get_direction() == Direction.LEFT:
-                    pygame.draw.rect(
-                        self.__screen,
-                        self.__color,
-                        [pos_x + half_ceil, pos_y, CELL_SIZE, CELL_SIZE]
-                    )
-                elif worm.get_direction() == Direction.RIGHT:
-                    pygame.draw.rect(
-                        self.__screen,
-                        self.__color,
-                        [pos_x, pos_y, CELL_SIZE - half_ceil, CELL_SIZE]
-                    )
-            else:
-                pygame.draw.rect(self.__screen, self.__color, [pos_x, pos_y, CELL_SIZE, CELL_SIZE])
+            pygame.draw.rect(self.__screen, self.__color, [pos_x + 1, pos_y + 1, CELL_SIZE - 1, CELL_SIZE - 1])
 
     def death(self, worm, field_x, field_y):
         for color in WormRenderer.DEATH_COLORS:
