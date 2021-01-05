@@ -1,1 +1,1 @@
-# Игра червячок создана только с учебной целью
+# This game has been created for education purposes only

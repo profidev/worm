@@ -52,7 +52,7 @@ class TextRenderer:
                 elif evt.type == pygame.QUIT:
                     return
             self.__screen.fill(BLACK)
-            text = font.render('Введи ваше имя', False, WHITE)
+            text = font.render('Input your name', False, WHITE)
             rect = text.get_rect()
             rect.center = self.__screen.get_rect().center
             rect.y -= 60

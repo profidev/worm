@@ -8,7 +8,7 @@ class GameProcessor:
         pygame.init()
         size = [800, 600]
         self.__screen = pygame.display.set_mode(size)
-        pygame.display.set_caption("Игра червячок")
+        pygame.display.set_caption("The worm")
         pygame.mixer.init()
 
     def run(self):

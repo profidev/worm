@@ -20,7 +20,7 @@ class LeaderboardRenderer:
                 elif evt.type == pygame.QUIT:
                     return
             self.__screen.fill(BLACK)
-            text = font.render('Лучший счет', False, WHITE)
+            text = font.render('Best score', False, WHITE)
             rect = text.get_rect()
             rect.center = self.__screen.get_rect().center
             rect.y = 10

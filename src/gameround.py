@@ -55,16 +55,16 @@ class GameRound:
                 self.__screen.fill(BLACK)
 
                 if not is_round_started:
-                    self.__text_renderer.display_slide_text('Уровень ' + str(self.__level_manger.get_current_level()))
+                    self.__text_renderer.display_slide_text('Level ' + str(self.__level_manger.get_current_level()))
                     is_round_started = True
 
                 self.__field.action()
                 if self.__field.is_game_over():
-                    self.__text_renderer.display_popup_text('Игра окончена')
+                    self.__text_renderer.display_popup_text('Game over')
                     stage = Stage.LEADERBOARD
                 if self.__field.is_level_done():
                     self.__text_renderer.display_slide_text(
-                        'Уровень ' + str(self.__level_manger.get_current_level()) + ' выполнен'
+                        'Level ' + str(self.__level_manger.get_current_level()) + ' completed'
                     )
                     if self.__level_manger.is_max_level():
                         stage = Stage.LEADERBOARD
