@@ -15,10 +15,9 @@ class LeaderboardRenderer:
         while not finished:
             for evt in pygame.event.get():
                 if evt.type == pygame.KEYDOWN:
-                    if evt.key == pygame.K_ESCAPE:
-                        finished = True
-                elif evt.type == pygame.QUIT:
                     return
+                elif evt.type == pygame.QUIT:
+                    exit()
             self.__screen.fill(BLACK)
             text = font.render('Best score', False, WHITE)
             rect = text.get_rect()

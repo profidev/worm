@@ -18,6 +18,7 @@ class Field:
         self.__field_y = size_y - self.__field_x - self.__field_height
 
         self.__field_renderer = FieldRenderer(screen)
+        self.__level_manager = level_manager
         self.__worm = Worm(*level_manager.get_current_level_config())
         self.__worm_renderer = WormRenderer(screen)
         self.__foods = []
@@ -29,7 +30,11 @@ class Field:
     def action(self):
         field_position = (self.__field_x, self.__field_y, self.__field_width, self.__field_height)
         self.__field_renderer.render(*field_position)
-        self.__field_renderer.write_data(self.__score_processor.get_score(), len(self.__worm.get_body()))
+        self.__field_renderer.write_data(
+            self.__score_processor.get_score(),
+            len(self.__worm.get_body()),
+            self.__level_manager.get_current_level()
+        )
 
         self.__worm.move()
         eat_food = self.__worm.eat(self.__foods)
